@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bts-navy: #20498E;
+  --bts-navy-hover: #0056A6;
+  --bts-green: #189008;
+  --bts-green-dark: #004D2C;
+  --bts-gray: #555555;
+  --bts-charcoal: #333333;
+  --bts-gold: #C5A44E;
+  --bts-yellow: #FDB913;
+  --bts-pink: #E91E8C;
+}
+
+/* Dark Mode Variables */
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-bts-navy: var(--bts-navy);
+  --color-bts-navy-hover: var(--bts-navy-hover);
+  --color-bts-green: var(--bts-green);
+  --color-bts-green-dark: var(--bts-green-dark);
+  --color-bts-gray: var(--bts-gray);
+  --color-bts-charcoal: var(--bts-charcoal);
+  --color-bts-gold: var(--bts-gold);
+  --color-bts-yellow: var(--bts-yellow);
+  --color-bts-pink: var(--bts-pink);
+  --font-sans: var(--font-noto-thai);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbar - BTS Navy Theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bts-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bts-navy);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bts-navy-hover);
 }
