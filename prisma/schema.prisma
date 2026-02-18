@@ -1,0 +1,30 @@
+// ตัวอย่าง Data Model พื้นฐาน: User + Post
+
+// ===== Generator: สร้าง Prisma Client =====
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+// ===== Datasource: เชื่อมต่อ PostgreSQL =====
+datasource db {
+  provider = "postgresql"
+}
+
+// ===== Model: User =====
+model User {
+  id    Int     @id @default(autoincrement())  // Primary Key, auto-increment
+  email String  @unique                         // Email ห้ามซ้ำ
+  name  String?                                 // ชื่อ (optional, อาจเป็น null)
+  posts Post[]                                  // Relation: User มีหลาย Post
+}
+
+// ===== Model: Post =====
+model Post {
+  id        Int     @id @default(autoincrement())
+  title     String                                // หัวข้อ
+  content   String?                               // เนื้อหา (optional)
+  published Boolean @default(false)               // สถานะเผยแพร่ (default: false)
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int                                   // Foreign Key → User.id
+}
